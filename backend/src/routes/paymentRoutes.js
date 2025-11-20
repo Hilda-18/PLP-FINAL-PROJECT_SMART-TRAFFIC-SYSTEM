@@ -2,11 +2,11 @@ import express from 'express';
 import DarajaService from '../services/DarajaService.js';
 import { authRequired } from '../middleware/authMiddleware.js';
 
-const router = express.Router();
+const paymentsRoutes = express.Router();
 const daraja = new DarajaService();
 
 // initiate STK Push
-router.post('/stkpush', authRequired, async (req, res) => {
+paymentsRoutes.post('/stkpush', authRequired, async (req, res) => {
   try {
     const { amount, phone, accountRef, description, orderId } = req.body;
     if (!amount || !phone) return res.status(400).json({ error: 'amount and phone are required' });
@@ -19,9 +19,9 @@ router.post('/stkpush', authRequired, async (req, res) => {
 });
 
 // callback endpoint to receive Daraja responses (should be publicly accessible)
-router.post('/callback', express.json(), (req, res) => {
+paymentsRoutes.post('/callback', express.json(), (req, res) => {
   console.log('Daraja callback received', JSON.stringify(req.body).slice(0,1000));
   res.status(200).json({ result: 'received' });
 });
 
-export default router;
+export default paymentsRoutes;
