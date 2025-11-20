@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 async function connectDB() {
   try {
-    await mongoose.connect(process.env.MONGODB_URI);
+    await mongoose.connect(process.env.MONGO_URI);
     if (process.env.NODE_ENV !== "production") {
       const timestamp = new Date().toISOString();
       process.stdout.write(`[${timestamp}] MongoDB connected\n`);
