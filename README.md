@@ -1,15 +1,18 @@
-SMART TRAFFIC MANAGEMENT SYSTEM
+**SMART TRAFFIC MANAGEMENT SYSTEM**
 
-A Full-Stack Intelligent Traffic Routing, Monitoring & Visualization Platform
+**A Full-Stack Intelligent Traffic Routing, Monitoring & Visualization Platform**
 
-👥 Collaborator
-Hilda Waringa
+👥 **Collaborators Frontend**
+**Hilda Waringa**
+**Email**:hildamuritu@gmail.com
+**GitHub**: https://github.com/Hilda-18
 
-Email: add-your-email-here
+**Collaborater Backend**
+**Stephen Henya**
+**Email**:
+**Github**:
 
-GitHub: add-your-github-profile-here
-
-📌 Project Overview
+📌 **Project Overview**
 
 The Smart Traffic Management System is a full-stack application designed to manage and visualize traffic routes across different regions.
 It provides an admin interface for creating, updating, and deleting traffic routes, plus a modern interactive map for viewing all routes visually.
@@ -17,61 +20,40 @@ It provides an admin interface for creating, updating, and deleting traffic rout
 The system aims to modernize real-time road monitoring and lay the foundation for future features like congestion alerts, AI predictions, and integrated navigation.
 
 ✨ Features
-🖥️ Frontend
+🖥️ **Frontend**
 
 Interactive Leaflet-based map view
-
 Modern UI styled with TailwindCSS
-
 Fully responsive and mobile-first
-
 Route Dashboard with CRUD functionality
-
 Animated UI components and gradients
-
 Login & authentication UI (backend ready)
-
 User-friendly Navigation bar
-
 Beautiful transitions & layout structure
 
-⚙️ Backend
+⚙️** Backend**
 
 RESTful API built with Express.js
-
 MongoDB database via Mongoose
-
 CRUD operations for route management
-
 Proper error handling & validation
-
 CORS enabled for frontend communication
-
 Scalable folder structure
 
-🛠️ Tech Stack
+🛠️ **Tech Stack**
 Frontend
-
 React (Vite)
-
 TailwindCSS
-
 Axios
-
 React Router DOM
-
 Leaflet Maps
 
-Backend
+**Backend**
 
 Node.js
-
 Express.js
-
 MongoDB + Mongoose
-
 dotenv
-
 CORS
 
 📂 Folder Structure
@@ -94,7 +76,7 @@ CORS
 │
 └── README.md
 
-🚀 Installation & Setup
+**🚀 Installation & Setup**
 1️⃣ Clone Repository
 git clone <your-repository-link>
 
@@ -172,40 +154,29 @@ Prepared for backend authentication.
 
 You will update these once hosting is done.
 
-🌐 Live Demo (Placeholders Until Deployment)
+**🌐 Live Demo (Placeholders Until Deployment)**
 
-Frontend Live Link: coming-soon
+**Frontend Live Link: coming-soon**
 
-Backend API Live Link: coming-soon
+**Backend API Live Link: coming-soon**
 
-Demo Video: coming-soon
+**Pitch Deck:**
 
-🛣️ Future Improvements
+**🛣️ Future Improvements**
 
 🔹 Integrated M-Pesa or Stripe payments
-
 🔹 Real-time live traffic alerts
-
 🔹 AI-powered congestion prediction
-
 🔹 User authentication with JWT
-
 🔹 Admin profile & audit logs
-
 🔹 More detailed map layers
-
 🔹 Push notifications
-
 🔹 Multi-role access (Admin / User)
-
 🔹 Beautiful analytics dashboard
 
-🤝 Contributing
+🤝** Contributing**
 
 Fork repo
-
 Create a new branch
-
 Make improvements
-
 Create a Pull Request
