@@ -90,8 +90,8 @@ Smart-Traffic-Management-System/
 ### 1️⃣ Clone Repository
 
 ```bash
-git clone <your-repository-link>
-cd Smart-Traffic-Management-System
+git clone <https://github.com/Hilda-18/PLP-FINAL-PROJECT_SMART-TRAFFIC-SYSTEM>
+cd PLP-FINAL-PROJECT_SMART-TRAFFIC-SYSTEM
 ```
 
 ---
@@ -99,7 +99,7 @@ cd Smart-Traffic-Management-System
 ### ⚙️ Backend Setup
 
 ```bash
-cd Backend
+cd backend
 npm install
 ```
 Create a `.env` file:
@@ -163,22 +163,11 @@ Base URL: `http://localhost:5000/api/routes`
 
 ---
 
-## 📸 Screenshots
-
-*(Add screenshots after deployment)*
-
-- ![Dashboard](link-here)
-- ![Map View](link-here)
-- ![Login Page](link-here)
-
-> _Update these links once hosting is complete._
-
----
 
 ## 🌐 Live Demo
 
 - **Frontend:** [Live Link](https://plp-final-project-smart-traffic-s-git-ef45ae-hilda-18s-projects.vercel.app)
-- **Backend API:** _coming soon_
+- **Backend API:** [Live Link](https://plp-final-project-smart-traffic-system.onrender.com)
 - **Pitch Deck:** [View on Gamma](https://smart-traffic-management-jdsjzu0.gamma.site/)
 
 ---
