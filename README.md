@@ -160,7 +160,7 @@ You will update these once hosting is done.
 
 **Backend API Live Link: coming-soon**
 
-**Pitch Deck:*https://gamma.app/docs/f3rjqyvopoatmzz#card-w1o5rxasu7lab3g*
+**Pitch Deck:*https://smart-traffic-management-jdsjzu0.gamma.site/*
 
 **🛣️ Future Improvements**
 
