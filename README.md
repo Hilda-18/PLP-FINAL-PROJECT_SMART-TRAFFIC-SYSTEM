@@ -9,7 +9,7 @@ A **Full-Stack Intelligent Traffic Routing, Monitoring & Visualization Platform*
 | Role          | Name              | Email                    | GitHub                                    |
 |---------------|-------------------|--------------------------|-------------------------------------------|
 | Frontend Lead | Hilda Waringa     | hildamuritu@gmail.com    | [Hilda-18](https://github.com/Hilda-18)   |
-| Backend Lead  | Stephen Henya     |                          |                                           |
+| Backend Lead  | Stephen Henya     | henyastephen@gmail.com   | https://github.com/Stephen-Henya                                     |
 
 
 ---
