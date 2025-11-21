@@ -156,11 +156,11 @@ You will update these once hosting is done.
 
 **🌐 Live Demo (Placeholders Until Deployment)**
 
-**Frontend Live Link: coming-soon**
+**Frontend Live Link: https://plp-final-project-smart-traffic-s-git-ef45ae-hilda-18s-projects.vercel.app**
 
 **Backend API Live Link: coming-soon**
 
-**Pitch Deck:*https://smart-traffic-management-jdsjzu0.gamma.site/*
+**Pitch Deck:**https://smart-traffic-management-jdsjzu0.gamma.site/**
 
 **🛣️ Future Improvements**
 
