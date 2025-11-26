@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Check, CreditCard, Zap, Building, Star } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
+import api from '@/lib/api';
 
 const Payments = () => {
   const [selectedPlan, setSelectedPlan] = useState<string | null>(null);
@@ -91,9 +92,17 @@ const Payments = () => {
     },
   ];
 
-  const handleSelectPlan = (planId: string) => {
+  const handleSelectPlan = async (planId: string) => {
     setSelectedPlan(planId);
-    toast.success("Plan selected! Redirecting to checkout...");
+    // For demo we will call backend to initiate a payment (Daraja STK push) with a mocked payload.
+    try {
+      const phone = prompt('Enter phone number for MPesa payment', '254712345678') || '254700000000';
+      const amount = planId === 'basic' ? 299 : planId === 'pro' ? 799 : 9999;
+      const res = await api.initiateStkPush({ amount, phone, accountRef: 'plan-' + planId, description: `Purchase ${planId}`, orderId: 'order-' + Date.now() });
+      toast.success('Payment initiated');
+    } catch (err: any) {
+      toast.error(err.message || 'Payment initiation failed');
+    }
   };
 
   return (

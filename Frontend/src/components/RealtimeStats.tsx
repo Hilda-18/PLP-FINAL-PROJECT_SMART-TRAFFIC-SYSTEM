@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import api from '@/lib/api';
 import { Card, CardContent } from "@/components/ui/card";
 import { 
   Activity, 
@@ -54,23 +55,29 @@ const RealtimeStats = () => {
     },
   ]);
 
-  // Simulate real-time updates
   useEffect(() => {
-    const interval = setInterval(() => {
-      setStats(prevStats => prevStats.map(stat => {
-        const randomChange = (Math.random() * 2 - 1).toFixed(1);
-        const changeValue = parseFloat(randomChange);
-        const newChange = `${changeValue > 0 ? '+' : ''}${randomChange}%`;
-        
-        return {
-          ...stat,
-          change: newChange,
-          trend: changeValue > 0 ? "up" as const : "down" as const,
-        };
-      }));
-    }, 5000);
-
-    return () => clearInterval(interval);
+    let mounted = true;
+    let interval: any = null;
+    async function updateStats() {
+      try {
+        const intersections = await api.getIntersections();
+        const count = Array.isArray(intersections) ? intersections.length : 0;
+        const avgCongestion = intersections && intersections.length ? Math.round(intersections.reduce((s:any, i: any) => s + (i.congestionLevel || 0), 0) / intersections.length) : 0;
+        const incidents = intersections ? intersections.filter((i: any) => (i.congestionLevel || 0) > 75).length : 0;
+        const newStats = [
+          { title: 'Active Routes', value: String(count), change: `+${Math.floor(Math.random() * 10)}%`, trend: 'up' as const, icon: Car, color: 'text-primary' },
+          { title: 'Avg. Travel Time', value: `${Math.round(10 + avgCongestion / 5)} min`, change: `-${Math.floor(Math.random() * 7)}%`, trend: 'down' as const, icon: Clock, color: 'text-success' },
+          { title: 'Traffic Incidents', value: String(incidents), change: `+${Math.floor(Math.random() * 5)}%`, trend: 'up' as const, icon: AlertTriangle, color: 'text-warning' },
+          { title: 'System Efficiency', value: `${Math.round(100 - avgCongestion)}%`, change: `+${Math.floor(Math.random() * 3)}%`, trend: 'up' as const, icon: Activity, color: 'text-secondary' }
+        ];
+        if (mounted) setStats(newStats);
+      } catch (err) {
+        // Keep existing stats on error
+      }
+    }
+    updateStats();
+    interval = setInterval(updateStats, 5000);
+    return () => { mounted = false; clearInterval(interval); };
   }, []);
 
   return (

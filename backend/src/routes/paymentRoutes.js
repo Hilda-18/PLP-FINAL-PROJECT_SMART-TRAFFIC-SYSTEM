@@ -8,6 +8,7 @@ const daraja = new DarajaService();
 // initiate STK Push
 paymentsRoutes.post('/stkpush', authRequired, async (req, res) => {
   try {
+    if (!daraja.isConfigured) return res.status(503).json({ error: 'Daraja is not configured on the server' });
     const { amount, phone, accountRef, description, orderId } = req.body;
     if (!amount || !phone) return res.status(400).json({ error: 'amount and phone are required' });
     const result = await daraja.initiateStkPush({ amount, phone, accountRef, description, orderId });

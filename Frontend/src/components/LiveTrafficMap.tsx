@@ -6,6 +6,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import api from '@/lib/api';
+import socketLib from '@/lib/socket';
 
 const LiveTrafficMap = () => {
   const mapContainer = useRef<HTMLDivElement>(null);
@@ -13,14 +15,7 @@ const LiveTrafficMap = () => {
   const [mapboxToken, setMapboxToken] = useState<string>('');
   const [tokenSaved, setTokenSaved] = useState(false);
 
-  // Sample traffic data points
-  const trafficPoints = [
-    { name: "Route A - Main St", lng: -74.006, lat: 40.7128, status: "high", congestion: 85 },
-    { name: "Route B - Broadway", lng: -73.996, lat: 40.7228, status: "medium", congestion: 55 },
-    { name: "Route C - 5th Ave", lng: -73.986, lat: 40.7428, status: "low", congestion: 25 },
-    { name: "Route D - Park Ave", lng: -73.976, lat: 40.7528, status: "critical", congestion: 95 },
-    { name: "Route E - Madison", lng: -73.966, lat: 40.7628, status: "medium", congestion: 60 },
-  ];
+  const [trafficPoints, setTrafficPoints] = useState<any[]>([]);
 
   const getStatusColor = (status: string) => {
     switch (status) {
@@ -132,7 +127,45 @@ const LiveTrafficMap = () => {
       toast.error("Failed to initialize map. Please check your token.");
       setTokenSaved(false);
     }
-  }, [tokenSaved, mapboxToken]);
+  }, [tokenSaved, mapboxToken, trafficPoints]);
+
+  // Fetch initial points and listen for live updates
+  useEffect(() => {
+    let isMounted = true;
+    async function loadData() {
+      try {
+        const api = (await import('@/lib/api')).default;
+        const intersections = await api.getIntersections();
+        const lights = await api.getLights();
+        // Build points from intersections and lights
+        const pts = (intersections || []).map((i: any) => ({
+          id: i._id,
+          name: i.name,
+          lng: i.coords?.lng || (i.coords && i.coords[0]) || -74.006,
+          lat: i.coords?.lat || (i.coords && i.coords[1]) || 40.7128,
+          congestion: i.congestionLevel || 0,
+          status: i.congestionLevel > 80 ? 'critical' : i.congestionLevel > 60 ? 'high' : i.congestionLevel > 30 ? 'medium' : 'low'
+        }));
+        if (isMounted) setTrafficPoints(pts);
+        const socket = socketLib.connectSocket();
+        socket.on('traffic-update', (updates: any[]) => {
+          // updates: [{ id: intersectionId, congestion }]
+          setTrafficPoints(prev => prev.map(p => {
+            const u = updates.find((x: any) => String(x.id) === String(p.id));
+            if (u) {
+              const c = u.congestion;
+              return { ...p, congestion: c, status: c > 80 ? 'critical' : c > 60 ? 'high' : c > 30 ? 'medium' : 'low' };
+            }
+            return p;
+          }));
+        });
+      } catch (err) {
+        console.error('Failed to fetch traffic data', err);
+      }
+    }
+    loadData();
+    return () => { isMounted = false; };
+  }, []);
 
   if (!tokenSaved) {
     return (

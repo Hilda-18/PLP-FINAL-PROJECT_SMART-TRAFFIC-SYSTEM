@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Route } from "lucide-react";
 import { toast } from "sonner";
+import api from '@/lib/api';
 
 const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,25 +14,34 @@ const Auth = () => {
   const handleLogin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
+    const uname = (document.getElementById('login-email') as HTMLInputElement).value;
+    const pwd = (document.getElementById('login-password') as HTMLInputElement).value;
+    try {
+      const res = await api.login(uname, pwd);
       setIsLoading(false);
-      toast.success("Login successful!");
-      window.location.href = "/dashboard";
-    }, 1500);
+      toast.success('Login successful!');
+      window.location.href = '/dashboard';
+    } catch (err: any) {
+      setIsLoading(false);
+      toast.error(err.message || 'Login failed');
+    }
   };
 
   const handleSignup = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
-    
-    // Simulate API call
-    setTimeout(() => {
+    const name = (document.getElementById('signup-name') as HTMLInputElement).value;
+    const email = (document.getElementById('signup-email') as HTMLInputElement).value;
+    const pw = (document.getElementById('signup-password') as HTMLInputElement).value;
+    try {
+      await api.register(email, pw, 'operator');
       setIsLoading(false);
-      toast.success("Account created successfully!");
-      window.location.href = "/dashboard";
-    }, 1500);
+      toast.success('Account created successfully!');
+      window.location.href = '/dashboard';
+    } catch (err: any) {
+      setIsLoading(false);
+      toast.error(err.message || 'Signup failed');
+    }
   };
 
   return (

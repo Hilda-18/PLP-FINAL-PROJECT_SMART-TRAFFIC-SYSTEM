@@ -20,7 +20,7 @@ export default class DarajaService {
     this.passkey = process.env.DARAJA_PASSKEY;
     this.callbackUrl = process.env.DARAJA_CALLBACK_URL;
     this.env = (process.env.DARAJA_ENV === 'production') ? 'production' : 'sandbox';
-    if (!this.consumerKey || !this.consumerSecret) throw new Error('DARAJA keys not configured');
+    this.isConfigured = !!(this.consumerKey && this.consumerSecret && this.shortcode && this.passkey && this.callbackUrl);
   }
 
   async getAccessToken() {

@@ -2,7 +2,8 @@ import mongoose from "mongoose";
 
 export async function connectDB() {
   try {
-    await mongoose.connect(process.env.MONGO_URI);
+    const uri = process.env.MONGO_URI || 'mongodb://localhost:27017/smart-traffic';
+    await mongoose.connect(uri);
     if (process.env.NODE_ENV !== "production") {
       const timestamp = new Date().toISOString();
       process.stdout.write(`[${timestamp}] MongoDB connected\n`);

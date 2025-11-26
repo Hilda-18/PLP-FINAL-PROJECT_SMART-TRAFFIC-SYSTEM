@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from './ThemeToggle';
+import BackendStatus from './BackendStatus';
 import { 
   Home, 
   LayoutDashboard, 
@@ -9,7 +11,8 @@ import {
   LogIn, 
   LogOut, 
   Menu, 
-  X 
+  X, 
+  Github
 } from "lucide-react";
 
 interface NavigationProps {
@@ -61,6 +64,11 @@ const Navigation = ({ isAuthenticated = false, onLogout }: NavigationProps) => {
 
           {/* Auth Button */}
           <div className="hidden md:flex items-center space-x-2">
+            <ThemeToggle />
+            <BackendStatus />
+            <a href="https://github.com/Hilda-18/PLP-FINAL-PROJECT_SMART-TRAFFIC-SYSTEM/tree/main/backend" target="_blank" rel="noopener noreferrer" className="p-2 rounded-lg hover:bg-muted transition-colors">
+              <Github className="h-5 w-5" />
+            </a>
             {isAuthenticated ? (
               <Button
                 variant="outline"
@@ -100,6 +108,9 @@ const Navigation = ({ isAuthenticated = false, onLogout }: NavigationProps) => {
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
           <div className="md:hidden py-4 animate-slide-up">
+            <div className="px-4 pb-4">
+              <ThemeToggle />
+            </div>
             <div className="flex flex-col space-y-2">
               {navLinks.map((link) => (
                 <button
@@ -142,6 +153,12 @@ const Navigation = ({ isAuthenticated = false, onLogout }: NavigationProps) => {
                     </Button>
                   </button>
                 )}
+              </div>
+              <div className="pt-2 border-t border-border mt-2">
+                <a href="https://github.com/Hilda-18/PLP-FINAL-PROJECT_SMART-TRAFFIC-SYSTEM" target="_blank" rel="noopener noreferrer" className="w-full flex items-center justify-center space-x-2 p-3 rounded-lg hover:bg-muted">
+                  <Github className="h-4 w-4" />
+                  <span>View on GitHub</span>
+                </a>
               </div>
             </div>
           </div>
