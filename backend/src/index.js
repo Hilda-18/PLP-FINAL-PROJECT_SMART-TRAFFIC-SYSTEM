@@ -23,6 +23,9 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(express.json());
+app.get('/', (req, res) => {
+  res.send('Smart Traffic System Backend is running.');
+});
 
 app.use('/api/traffic', trafficRoutes);
 app.use('/api/auth', authRoutes);
