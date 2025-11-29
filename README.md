@@ -166,7 +166,7 @@ Base URL: `http://localhost:5000/api/routes`
 
 ## 🌐 Live Demo
 
-- **Frontend:** [Live Link](https://plp-final-project-smart-traffic-s-git-ef45ae-hilda-18s-projects.vercel.app)
+- **Frontend:** [Live Link](https://plp-final-project-smart-traffic-sys-three.vercel.app/ )
 - **Backend API:** [Live Link](https://plp-final-project-smart-traffic-system.onrender.com)
 - **Pitch Deck:** [View on Gamma](https://smart-traffic-management-jdsjzu0.gamma.site/)
 
